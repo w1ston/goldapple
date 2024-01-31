@@ -1,0 +1,29 @@
+.cards_container {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 20px;
+    padding: 30px;
+    width: 200px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card_info:hover {
+    transform: translateY(-5px);
+    color: #bd7d49;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card_info:not(:hover) {
+    transition: all 0.5s ease;
+}

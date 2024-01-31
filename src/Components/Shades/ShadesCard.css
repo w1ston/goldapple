@@ -1,0 +1,32 @@
+.shades_container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.shade {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-around;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.shade img {
+    width: 100%;
+    height: auto;
+}
+
+.shade:hover p {
+    transform: translateY(-5px);
+    color: #bd7d49;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.shade:not(:hover) p {
+    transition: all 0.3s ease;
+}
