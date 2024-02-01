@@ -16,7 +16,7 @@ const ShadesCard = () => {
             {shades.map(product => (
                 <div key={product.id_shade} className="shade">
                     <Link to={`/product/${formatBrandName(product.name_product)}`}>
-                        <img src={product.photo} alt={product.name_shade}/>
+                        <img src={product.photo_link} alt={product.name_shade}/>
                         <div style={{
                             display: "flex",
                             flexDirection: "column",

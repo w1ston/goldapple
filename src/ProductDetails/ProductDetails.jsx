@@ -36,33 +36,44 @@ const ProductDetails = () => {
         );
     }
 
+    const ProductDetails = ({ productInfo, productPhotos, productShades }) => {
+        return (
+            <div>
+                <h2>{productInfo.name_product}</h2>
+                <p>{productInfo.description}</p>
+                <h3 style={{fontSize: '30px'}}>{'★'.repeat(productInfo.rating)}</h3>
+
+                <h3>Product Photos:</h3>
+                <div>
+                    {productPhotos.map((photo, index) => (
+                        <img key={index} src={photo} alt={`Product Photo ${index}`} />
+                    ))}
+                </div>
+
+                <h3>Shades:</h3>
+                {productShades.map((shade) => (
+                    <div key={shade.id_shade}>
+                        <h4>{shade.name_shade}</h4>
+                        <div>
+                            {shade.photos.map((photo, index) => (
+                                <img key={index} src={photo} alt={`Shade Photo ${index}`} />
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
     return (
         <div style={{width: '100%'}}>
             <img style={{width: '100%', height: '200px', objectFit: 'cover'}} src="../../Photos/newBrands.jpeg"
                  alt="photo"/>
-            <div>
-                <h2>{productDetails.productInfo.name_product}</h2>
-                <p>{productDetails.productInfo.description}</p>
-                <p>Цена: {productDetails.productInfo.price}</p>
-                <p>Рейтинг: {'★'.repeat(productDetails.productInfo.rating)}</p>
-
-                <h3>Фотографии продукта:</h3>
-                <div>
-                    {productDetails.productPhotos.map(photo => (
-                        <img key={photo.id_photo} src={photo.link}
-                             alt={`Фотография продукта ${productDetails.productInfo.name_product}`}/>
-                    ))}
-                </div>
-
-                <h3>Тени продукта:</h3>
-                <ul>
-                    {productDetails.productShades.map(shade => (
-                        <li key={shade.id_shade}>{shade.name_shade}
-                            <img src={shade.photo}/>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <ProductDetails
+                productInfo={productDetails.productInfo}
+                productPhotos={productDetails.productPhotos}
+                productShades={productDetails.productShades}
+            />
         </div>
     );
 };
