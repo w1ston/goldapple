@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import './ProductDetails.css';
 import Footer from "../Components/Footer/Footer";
+import {useShoppingCart} from "../Components/Shop/ShoppingCartContext";
 
 const ProductDetails = () => {
     const {productName} = useParams();
@@ -12,7 +13,9 @@ const ProductDetails = () => {
     const [activeShade, setActiveShade] = useState(null);
     const [productPhotos, setProductPhotos] = useState([]);
     const [shadePhotos, setShadePhotos] = useState([]);
+    const [shadeName, setShadeName] = useState('');
     const navigate = useNavigate();
+    const {addToCart} = useShoppingCart();
 
     const handleGoBack = () => {
         navigate(-1);
@@ -23,6 +26,7 @@ const ProductDetails = () => {
             setProductPhotos([...productDetails.productPhotos]);
             if (productDetails.productShades && productDetails.productShades.length > 0) {
                 const allShadePhotos = productDetails.productShades.reduce((accumulator, shade) => {
+                    setShadeName(shade.name_shade);
                     if (shade.photos) {
                         return accumulator.concat(shade.photos);
                     }
@@ -43,12 +47,14 @@ const ProductDetails = () => {
             setProductPhotos([...productDetails.productPhotos]);
             setShadePhotos([...shade.photos]);
             setActiveShade(null);
+            setShadeName(shade.name_shade)
         } else {
             setActiveShade(shade);
             if (shade && shade.photos) {
                 setProductPhotos([...shade.photos]);
                 setShadePhotos([...productDetails.productPhotos]);
             }
+            setShadeName(productDetails.productInfo.color);
         }
     };
 
@@ -109,6 +115,15 @@ const ProductDetails = () => {
         );
     }
 
+    const handledAddToCart = () => {
+
+        addToCart({
+            name: productDetails.productInfo.name_product,
+            price: productDetails.productInfo.price,
+            photo: productPhotos[0]
+        });
+    };
+
     return (
         <div style={{width: '100%'}}>
             <img style={{width: '100%', height: '200px', objectFit: 'cover'}} src="../../Photos/newBrands.jpeg"
@@ -120,7 +135,8 @@ const ProductDetails = () => {
                         {productDetails.productInfo.name_product}
                     </h1>
                     <div style={{position: 'relative'}}>
-                        <div style={{ display: "flex", alignItems: 'center', gap: '50px'}}>
+                        <div style={{display: "flex", alignItems: 'center', gap: '50px'}}
+                             className="media_screen_product">
                             <div>
                                 <img
                                     src={productPhotos[activeIndex]}
@@ -156,14 +172,23 @@ const ProductDetails = () => {
                                 </div>
                             </div>
 
-                            <div>
+                            <div style={{
+                                display: "flex",
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                gap: '30px',
+                                width: '100%'
+                            }}>
                                 {productDetails.productShades.map((shade) => (
-                                    <div key={shade.id_shade} onClick={() => handleShadeClick(shade)} style={{ display: "flex", flexDirection: 'column', gap: '10px', width: '100%'}}>
+                                    <div key={shade.id_shade} onClick={() => handleShadeClick(shade)}
+                                         style={{display: "flex", flexDirection: 'column', gap: '10px', width: '100%'}}>
                                         <h4 className="shades">оттенки:</h4>
-                                        <p style={{ textAlign: 'center'}}>{shade.name_shade}</p>
+                                        <p style={{textAlign: 'center'}}>{shadeName}</p>
                                         <div style={{display: 'flex', justifyContent: 'center'}}>
                                             {shadePhotos.slice(0, 1).map((photo, index) => (
-                                                <div key={index} onClick={() => handlePhotoClick(index)} className="shades_info">
+                                                <div key={index} onClick={() => handlePhotoClick(index)}
+                                                     className="shades_info">
                                                     <img
                                                         src={photo}
                                                         alt={`Shade Photo ${index}`}
@@ -181,6 +206,8 @@ const ProductDetails = () => {
                                         </div>
                                     </div>
                                 ))}
+                                <h2 style={{}}>${productDetails.productInfo.price}</h2>
+                                <button onClick={handledAddToCart} className="button_shop">ДОБАВИТЬ В КОРЗИНУ</button>
                             </div>
                         </div>
                     </div>

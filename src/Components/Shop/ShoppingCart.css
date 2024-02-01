@@ -1,0 +1,12 @@
+.shopping_cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 70%;
+    max-height: 100%;
+    width: 300px;
+    overflow: auto;
+}

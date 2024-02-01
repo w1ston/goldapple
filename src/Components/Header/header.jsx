@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import classes from "./header.module.css";
+import ShopingCart from "../Shop/ShopingCart";
 
 const useCustomNavigate = () => {
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ const Header = () => {
                         }}>главная</Link>
                         <Link to="brands">бренды</Link>
                         <Link to="search">поиск</Link>
+                        <a><ShopingCart/></a>
                     </nav>
                 </ul>
             </div>

@@ -21,3 +21,29 @@
 .shades_info:not(:hover) {
     transition: all 0.3s ease;
 }
+
+.button_shop {
+    width: 250px;
+    height: 50px;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+.button_shop:hover {
+    cursor: pointer;
+    background-color: #ffbe8f;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.button_shop:not(:hover) {
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 940px) {
+    .media_screen_product {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
