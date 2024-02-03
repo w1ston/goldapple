@@ -7,9 +7,10 @@ import Footer from "../Components/Footer/Footer";
 
 const HomePage = () => {
     return (
-        <div style={{ width: '100%'}}>
+        <div style={{width: '100%'}}>
             <div className="main_photo">
-                <img style={{ width: '100%', height: '500px', objectFit: 'cover'}} src="../../Photos/main_header.jpeg" alt="photo"/>
+                <img style={{width: '100%', height: '500px', objectFit: 'cover'}} src="../../Photos/main_header.jpeg"
+                     alt="photo"/>
             </div>
             <div className="main_new">
                 <h3>новинки</h3>

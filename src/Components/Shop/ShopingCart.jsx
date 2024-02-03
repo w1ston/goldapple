@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useShoppingCart} from './ShoppingCartContext';
 import './ShoppingCart.css';
+import Modal from "../ModalWindow/Modal";
 
 const ShoppingCart = () => {
     const {cartItems, removeFromCart, isCartOpen, toggleCart} = useShoppingCart();
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
     const calculateTotalPrice = () => {
         return cartItems.reduce((total, item) => {
@@ -32,7 +42,7 @@ const ShoppingCart = () => {
                             <li key={index} style={{display: `flex`, flexDirection: 'column', justifyContent:'center', alignItems: 'center'}}>
                                 <div className="shop_product">
                                     <div className="shop_product_info">
-                                        <img src={item.photo} style={{width: '100%'}}/>
+                                        <img src={item.photo} style={{width: '100%'}} alt={item.name}/>
                                         <p>{item.name} - {item.color}</p>
                                         <p>${item.price}</p>
                                     </div>
@@ -43,11 +53,11 @@ const ShoppingCart = () => {
                     </ul>
                     {cartItems.length > 0 && (
                         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                            <p>Итоговая цена: ${calculateTotalPrice().toFixed(2)}</p>
+                            <p>итоговая цена: ${calculateTotalPrice().toFixed(2)}</p>
                         </div>
                     )}
                     {cartItems.length > 0 ? (
-                            <button className="buttonBack type1">забрать в магазине</button>
+                            <button className="buttonBack type1" onClick={openModal}>забрать в магазине</button>
                         ) :
                         <div style={{height: '400px', display: "flex", justifyContent: 'center', alignItems: 'center'}}>
                             <p style={{fontSize: '30px'}}>в корзине пусто</p>
@@ -55,6 +65,7 @@ const ShoppingCart = () => {
                     }
                 </div>
             )}
+            <Modal isOpen={modalOpen} onClose={closeModal} />
         </div>
     );
 };
