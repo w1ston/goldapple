@@ -43,7 +43,7 @@ const Header = () => {
                         }}>главная</Link>
                         <Link to="brands">бренды</Link>
                         <Link to="search">поиск</Link>
-                        <a><ShopingCart/></a>
+                        <a style={{zIndex: '999'}}><ShopingCart/></a>
                     </nav>
                 </ul>
             </div>

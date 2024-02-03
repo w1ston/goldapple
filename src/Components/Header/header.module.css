@@ -13,6 +13,7 @@
     width: 100%;
     color: black;
     transition: background 0.3s ease-in-out;
+    z-index: 99999;
 }
 
 .headStop:hover {

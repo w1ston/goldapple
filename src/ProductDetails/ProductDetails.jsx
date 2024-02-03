@@ -14,6 +14,7 @@ const ProductDetails = () => {
     const [productPhotos, setProductPhotos] = useState([]);
     const [shadePhotos, setShadePhotos] = useState([]);
     const [shadeName, setShadeName] = useState('');
+    const [shadeNameDescription, setShadeNameDescription] = useState('');
     const navigate = useNavigate();
     const {addToCart} = useShoppingCart();
 
@@ -27,6 +28,7 @@ const ProductDetails = () => {
             if (productDetails.productShades && productDetails.productShades.length > 0) {
                 const allShadePhotos = productDetails.productShades.reduce((accumulator, shade) => {
                     setShadeName(shade.name_shade);
+                    setShadeNameDescription(productDetails.productInfo.color);
                     if (shade.photos) {
                         return accumulator.concat(shade.photos);
                     }
@@ -48,6 +50,7 @@ const ProductDetails = () => {
             setShadePhotos([...shade.photos]);
             setActiveShade(null);
             setShadeName(shade.name_shade)
+            setShadeNameDescription(productDetails.productInfo.color);
         } else {
             setActiveShade(shade);
             if (shade && shade.photos) {
@@ -55,6 +58,7 @@ const ProductDetails = () => {
                 setShadePhotos([...productDetails.productPhotos]);
             }
             setShadeName(productDetails.productInfo.color);
+            setShadeNameDescription(shade.name_shade);
         }
     };
 
@@ -120,7 +124,8 @@ const ProductDetails = () => {
         addToCart({
             name: productDetails.productInfo.name_product,
             price: productDetails.productInfo.price,
-            photo: productPhotos[0]
+            photo: productPhotos[0],
+            color: shadeNameDescription
         });
     };
 
@@ -180,10 +185,10 @@ const ProductDetails = () => {
                                 gap: '30px',
                                 width: '100%'
                             }}>
+                                <h4 className="shades">оттенки:</h4>
                                 {productDetails.productShades.map((shade) => (
                                     <div key={shade.id_shade} onClick={() => handleShadeClick(shade)}
                                          style={{display: "flex", flexDirection: 'column', gap: '10px', width: '100%'}}>
-                                        <h4 className="shades">оттенки:</h4>
                                         <p style={{textAlign: 'center'}}>{shadeName}</p>
                                         <div style={{display: 'flex', justifyContent: 'center'}}>
                                             {shadePhotos.slice(0, 1).map((photo, index) => (
@@ -210,6 +215,31 @@ const ProductDetails = () => {
                                 <button onClick={handledAddToCart} className="button_shop">ДОБАВИТЬ В КОРЗИНУ</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="product_description">
+                <div className="about_product_container">
+                    <p>о продукте</p>
+                    <div className="table">
+                        <p>описание</p>
+                        <p>{productDetails.productInfo.description}</p>
+                    </div>
+                    <div className="table">
+                        <p>бренд</p>
+                        <p>{productDetails.productInfo.name_brand}</p>
+                    </div>
+                    <div className="table">
+                        <p>тип</p>
+                        <p>{productDetails.productInfo.name_type}</p>
+                    </div>
+                    <div className="table">
+                        <p>цвет</p>
+                        <p>{shadeNameDescription}</p>
+                    </div>
+                    <div className="table">
+                        <p>для кого</p>
+                        <p>{productDetails.productInfo.gender}</p>
                     </div>
                 </div>
             </div>

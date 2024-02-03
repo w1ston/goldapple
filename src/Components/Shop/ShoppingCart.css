@@ -7,6 +7,44 @@
     border: 1px solid #ccc;
     min-height: 70%;
     max-height: 100%;
-    width: 300px;
+    width: 500px;
     overflow: auto;
+    cursor: default;
+}
+
+.shop_product {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.shop_product_info {
+    width: 50%;
+}
+
+.button_close {
+    font-size: 20px;
+    border: none;
+    background: transparent;
+}
+
+.button_close:hover {
+    cursor: pointer;
+}
+
+.delete_button {
+    font-size: 16px;
+    border: none;
+    background: #ff5f5f;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+}
+
+.delete_button:hover {
+    cursor: pointer;
 }
