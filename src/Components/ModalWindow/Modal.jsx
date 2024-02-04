@@ -49,7 +49,7 @@ const Modal = ({isOpen, onClose}) => {
         const formattedPhone = phoneValue.replace(/\D/g, '');
 
         if (isValidPhone(formattedPhone) && validName(nameValue)) {
-            fetch(`https://sms.ru/sms/send?api_id=F76499D0-3CA8-296F-3DC4-12AE494BEC9C&to=${formattedPhone}&msg=${nameValue}+номер заказа: ${randomNumbers}, назовите+его+в+магазине&json=1&test=1`)
+            fetch(`https://sms.ru/sms/send?api_id=F76499D0-3CA8-296F-3DC4-12AE494BEC9C&to=${formattedPhone}&msg=${nameValue}+номер заказа: ${randomNumbers}, назовите+его+в+магазине&json=1`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

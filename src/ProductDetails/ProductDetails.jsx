@@ -120,7 +120,6 @@ const ProductDetails = () => {
     }
 
     const handledAddToCart = () => {
-
         addToCart({
             name: productDetails.productInfo.name_product,
             price: productDetails.productInfo.price,
@@ -136,7 +135,7 @@ const ProductDetails = () => {
             <div className="product_info">
                 <h5 style={{fontSize: '20px', textAlign: 'center'}}>{'★'.repeat(productDetails.productInfo.rating)}</h5>
                 <div style={{overflow: 'hidden', display: 'flex', flexDirection: 'column'}}>
-                    <h1 style={{fontSize: '70px', position: 'relative', top: '50px', right: '100px', zIndex: '99'}}>
+                    <h1 className="name_product">
                         {productDetails.productInfo.name_product}
                     </h1>
                     <div style={{position: 'relative'}}>

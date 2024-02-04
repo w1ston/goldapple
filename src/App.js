@@ -5,6 +5,7 @@ import HomePage from "./FirstPage/HomePage";
 import BrandPage from "./BrandPage/BrandPage";
 import BrandDetails from "./BrandDetails/BrandDetails";
 import ProductDetails from "./ProductDetails/ProductDetails";
+import SearchPage from "./SearchPage/SearchPage";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/brands" element={<BrandPage/>}/>
                 <Route path="/brands/:brandName" element={<BrandDetails/>}/>
                 <Route path="/product/:productName" element={<ProductDetails/>}/>
+                <Route path="/search" element={<SearchPage/>}/>
             </Routes>
         </>
     );

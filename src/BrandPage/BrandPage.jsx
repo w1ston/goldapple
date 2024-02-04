@@ -33,15 +33,21 @@ const BrandPage = () => {
                        onChange={handleSearch} maxLength={30}/>
                 <div className="brand_container">
                     <ul>
-                        {filteredBrands.map(brand => (
-                            <li key={brand.id_brand} style={{marginBottom: '10px', textTransform: 'lowercase'}}>
-                                <Link to={`/brands/${formatBrandName(brand.name_brand)}`}>
-                                    <div className="brand_name">
-                                        {brand.name_brand}
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
+                        {filteredBrands.length > 0 ? (
+                            <ul>
+                                {filteredBrands.map(brand => (
+                                    <li key={brand.id_brand} style={{ marginBottom: '10px', textTransform: 'lowercase' }}>
+                                        <Link to={`/brands/${formatBrandName(brand.name_brand)}`}>
+                                            <div className="brand_name">
+                                                {brand.name_brand}
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <h2>Ничего не найдено</h2>
+                        )}
                     </ul>
                 </div>
             </div>
